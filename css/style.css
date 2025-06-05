@@ -33,18 +33,31 @@ body {
   font-weight: 500;
 }
 
-.hero-section {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  padding: 2rem;
+.scroll-wrap {
+  width: 100%;
+  overflow: hidden;
+  background: #f0f0f0;
+  padding: 10px 0;
 }
 
-.hero-card img {
-  width: 250px;
-  border-radius: 12px;
-  object-fit: cover;
+.scroll-track {
+  display: flex;
+  will-change: transform;
+  backface-visibility: hidden; /* GPU支援の促進 */
 }
+
+.scroll-track .scroll-item {
+  flex-shrink: 0;
+  padding-right: 20px;
+}
+
+.scroll-track img {
+  width: 500px;
+  display: block;
+  border-radius: 10px;
+  image-rendering: auto; /* 滲みを防止 */
+}
+
 
 .sponsor {
   text-align: center;
