@@ -1,84 +1,69 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>AI サイト</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="AIと創造性で未来をデザインする。">
-  <link rel="stylesheet" href="css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DCAI</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-
-  <!-- ヘッダー -->
   <header class="site-header">
-    <div class="container">
-      <h1 class="logo">Digital Creative</h1>
-      <nav class="nav">
-        <a href="#services">サービス</a>
-        <a href="#works">制作実績</a>
-        <a href="#contact">お問い合わせ</a>
-      </nav>
-    </div>
+    <h1 class="logo">DCAI</h1>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#">ツール</a></li>
+        <li><a href="#">ギャラリー</a></li>
+        <li><a href="#">AIイラスト初級</a></li>
+        <li><a href="#">AIイラスト中級</a></li>
+        <li><a href="#">AIイラスト上級</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <!-- ヒーローセクション -->
-  <section class="hero">
-    <div class="container">
-      <h2>AIと創造性で未来を創る</h2>
-      <p>最先端のAI技術とデザイン力で、あなたのビジネスを次のステージへ</p>
-      <a href="#contact" class="cta-button">お問い合わせ</a>
-    </div>
-  </section>
+  <main>
+    <section class="hero-section">
+      <div class="hero-card"><img src="img/hero1.png" alt="Hero 1"></div>
+      <div class="hero-card"><img src="img/hero2.jpg" alt="Hero 2"></div>
+      <div class="hero-card"><img src="img/hero3.jpg" alt="Hero 3"></div>
+    </section>
 
-  <!-- サービス -->
-  <section id="services" class="services">
-    <div class="container">
-      <h2>サービス内容</h2>
-      <div class="card-list">
-        <div class="card">
-          <h3>AI画像生成</h3>
-          <p>高品質なAI画像を短時間で制作。</p>
-        </div>
-        <div class="card">
-          <h3>Webデザイン</h3>
-          <p>ユーザー体験を重視したモダンなUI/UX設計。</p>
-        </div>
-        <div class="card">
-          <h3>プロジェクト支援</h3>
-          <p>企画から運用まで、幅広くサポート。</p>
-        </div>
+    <section class="sponsor">
+      <p>Supported by</p>
+      <div class="sponsor-banner">
+        <h2>Integrate Gemini API</h2>
+        <p>Integrate Gemini API with a click</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 実績 -->
-  <section id="works" class="works">
-    <div class="container">
-      <h2>制作実績</h2>
-      <div class="work-list">
-        <div class="work-item">プロジェクトA</div>
-        <div class="work-item">プロジェクトB</div>
-        <div class="work-item">プロジェクトC</div>
+    <section class="latest-posts">
+      <h2>新着記事</h2>
+      <div class="posts-grid">
+        <article class="post-card">
+          <img src="img/post1.jpg" alt="Post 1">
+          <div class="post-meta">
+            <time>2025年5月12日</time>・<span>16min read</span>
+          </div>
+          <span class="post-tag red">AIイラスト上級</span>
+          <h3>オリジナルキャラクターLoRAの作り方【SDXL学習編】</h3>
+        </article>
+        <article class="post-card">
+          <img src="img/post2.jpg" alt="Post 2">
+          <div class="post-meta">
+            <time>2025年4月13日</time>・<span>15min read</span>
+          </div>
+          <span class="post-tag green">AIイラスト上級</span>
+          <h3>LoRAの作り方【SD1.5学習編】</h3>
+        </article>
+        <article class="post-card">
+          <img src="img/post3.jpg" alt="Post 3">
+          <div class="post-meta">
+            <time>2025年3月28日</time>・<span>18min read</span>
+          </div>
+          <span class="post-tag orange">AIイラスト上級</span>
+          <h3>データセット編 学習画像の制作とキャプション</h3>
+        </article>
       </div>
-    </div>
-  </section>
-
-  <!-- お問い合わせ -->
-  <section id="contact" class="contact">
-    <div class="container">
-      <h2>お問い合わせ</h2>
-      <p>ご相談・ご質問はお気軽にお問い合わせください。</p>
-      <a href="mailto:your@email.com" class="cta-button">メールを送る</a>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; 2025 e</p>
-    </div>
-  </footer>
-
+    </section>
+  </main>
 </body>
 </html>
-
