@@ -9,6 +9,18 @@
   --app-height: 100svh;
   --player-h: calc(var(--app-height) * 0.2);
   --mascot-h: 36px;
+  --safari-toolbar-buffer: 0px;
+}
+
+/* iOS Safari の下部ツールバー(常時表示のコンパクトなURL/タブバー)は
+   svh/dvh の計算だけでは避けきれず、固定表示のプレイヤーに重なることがある。
+   Safari(WebKit)のタッチデバイスに限定して、確実に上に逃がすための余白を足す。 */
+@supports (-webkit-touch-callout: none) {
+  @media (pointer: coarse) {
+    :root {
+      --safari-toolbar-buffer: 56px;
+    }
+  }
 }
 
 * {
@@ -75,7 +87,7 @@ body {
   min-height: 0;
   display: flex;
   flex-direction: column;
-  padding-bottom: calc(var(--player-h) + var(--mascot-h));
+  padding-bottom: calc(var(--player-h) + var(--mascot-h) + var(--safari-toolbar-buffer));
 }
 
 /* --- 再生中に転がるマスコット --- */
@@ -84,7 +96,7 @@ body {
   position: fixed;
   left: 0;
   right: 0;
-  bottom: var(--player-h);
+  bottom: calc(var(--player-h) + var(--safari-toolbar-buffer));
   margin: 0 auto;
   max-width: 600px;
   height: var(--mascot-h);
@@ -177,7 +189,7 @@ body {
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: var(--safari-toolbar-buffer);
   margin: 0 auto;
   max-width: 600px;
   height: var(--player-h);
