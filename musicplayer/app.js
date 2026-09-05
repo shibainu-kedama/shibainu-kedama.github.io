@@ -12,6 +12,7 @@
   const repeatBtn = document.getElementById("repeatBtn");
   const playlistEl = document.getElementById("playlist");
   const playlistCount = document.getElementById("playlistCount");
+  const mascotImg = document.getElementById("mascotImg");
 
   let order = TRACKS.map((_, i) => i); // 再生順(シャッフル時はここを並べ替える)
   let position = -1; // order 内での現在位置
@@ -159,6 +160,9 @@
       playNext(); // 連続再生
     }
   });
+
+  audio.addEventListener("play", () => mascotImg.classList.add("spinning"));
+  audio.addEventListener("pause", () => mascotImg.classList.remove("spinning"));
 
   seekBar.addEventListener("input", () => {
     isSeeking = true;

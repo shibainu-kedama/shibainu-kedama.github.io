@@ -7,6 +7,7 @@
   --text-dim: #9297ab;
   --border: #2c3040;
   --player-h: 20dvh;
+  --mascot-h: 36px;
 }
 
 * {
@@ -66,7 +67,49 @@ body {
   min-height: 0;
   display: flex;
   flex-direction: column;
-  padding-bottom: var(--player-h);
+  padding-bottom: calc(var(--player-h) + var(--mascot-h));
+}
+
+/* --- 再生中に転がるマスコット --- */
+
+.mascot-lane {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: var(--player-h);
+  margin: 0 auto;
+  max-width: 600px;
+  height: var(--mascot-h);
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.mascot {
+  position: absolute;
+  top: 50%;
+  left: -28px;
+  width: 28px;
+  height: 28px;
+  margin-top: -14px;
+  border-radius: 50%;
+  animation: mascot-roll 4.5s linear infinite;
+  animation-play-state: paused;
+}
+
+.mascot.spinning {
+  animation-play-state: running;
+}
+
+@keyframes mascot-roll {
+  0% {
+    left: -28px;
+    transform: rotate(0deg);
+  }
+  100% {
+    left: 100%;
+    transform: rotate(1080deg);
+  }
 }
 
 .playlist-header {
