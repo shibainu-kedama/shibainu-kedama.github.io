@@ -6,7 +6,7 @@
   --text: #f0f1f5;
   --text-dim: #9297ab;
   --border: #2c3040;
-  --app-height: 100dvh;
+  --app-height: 100svh;
   --player-h: calc(var(--app-height) * 0.2);
   --mascot-h: 36px;
 }
