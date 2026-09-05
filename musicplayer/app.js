@@ -1,4 +1,17 @@
 (function () {
+  // プレイヤーは中身が収まらない端末では 20% より縦に伸びることがあるため、
+  // 実際の高さを測ってマスコットのレーン位置(プレイヤーの真上)に反映する。
+  const nowPlayingEl = document.querySelector(".now-playing");
+  function syncNowPlayingHeight() {
+    document.documentElement.style.setProperty("--now-playing-h", nowPlayingEl.offsetHeight + "px");
+  }
+  syncNowPlayingHeight();
+  if (window.ResizeObserver) {
+    new ResizeObserver(syncNowPlayingHeight).observe(nowPlayingEl);
+  } else {
+    window.addEventListener("resize", syncNowPlayingHeight);
+  }
+
   const audio = document.getElementById("audio");
   const trackTitle = document.getElementById("trackTitle");
   const trackIndex = document.getElementById("trackIndex");

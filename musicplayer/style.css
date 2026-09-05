@@ -10,6 +10,7 @@
   --player-h: calc(var(--app-height) * 0.2);
   --mascot-h: 36px;
   --safari-toolbar-buffer: 0px;
+  --now-playing-h: var(--player-h); /* JSがプレイヤーの実測高さで上書きする(はみ出た分に追従) */
 }
 
 /* スマホのブラウザ(指で操作する画面)は、下部にブラウザ自身のツールバー/URLバーが
@@ -85,7 +86,7 @@ body {
   min-height: 0;
   display: flex;
   flex-direction: column;
-  padding-bottom: calc(var(--player-h) + var(--mascot-h) + var(--safari-toolbar-buffer));
+  padding-bottom: calc(var(--now-playing-h) + var(--mascot-h) + var(--safari-toolbar-buffer));
 }
 
 /* --- 再生中に転がるマスコット --- */
@@ -94,7 +95,7 @@ body {
   position: fixed;
   left: 0;
   right: 0;
-  bottom: calc(var(--player-h) + var(--safari-toolbar-buffer));
+  bottom: calc(var(--now-playing-h) + var(--safari-toolbar-buffer));
   margin: 0 auto;
   max-width: 600px;
   height: var(--mascot-h);
