@@ -44,6 +44,15 @@ body {
 .app-header h1 {
   font-size: 1.2rem;
   margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.app-header h1 .icon {
+  width: 20px;
+  height: 20px;
 }
 
 /* --- プレイリスト(スクロール領域) --- */
@@ -197,7 +206,6 @@ input[type="range"]::-moz-range-thumb {
   background: none;
   border: none;
   color: var(--text);
-  font-size: 1.4rem;
   cursor: pointer;
   width: 52px;
   height: 52px;
@@ -208,15 +216,36 @@ input[type="range"]::-moz-range-thumb {
   transition: background 0.15s ease;
 }
 
+.ctrl-btn .icon {
+  width: 24px;
+  height: 24px;
+}
+
 .ctrl-btn:active {
   background: var(--panel-alt);
 }
 
 .play-btn {
   background: var(--accent);
-  font-size: 1.5rem;
   width: 60px;
   height: 60px;
+}
+
+.play-btn .icon {
+  width: 26px;
+  height: 26px;
+}
+
+.play-btn .icon-pause {
+  display: none;
+}
+
+.play-btn.is-playing .icon-play {
+  display: none;
+}
+
+.play-btn.is-playing .icon-pause {
+  display: block;
 }
 
 .play-btn:active {
@@ -224,24 +253,17 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .toggle-btn {
-  font-size: 1.15rem;
   color: var(--text-dim);
+}
+
+.toggle-btn .icon {
+  width: 20px;
+  height: 20px;
 }
 
 .toggle-btn.active {
   color: var(--accent);
   background: var(--panel-alt);
-}
-
-.volume-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0 2px;
-}
-
-.volume-bar {
-  flex: 1;
 }
 
 /* 画面が広い場合(PC等)は player の高さ想定を少し縮める */

@@ -10,7 +10,6 @@
   const nextBtn = document.getElementById("nextBtn");
   const shuffleBtn = document.getElementById("shuffleBtn");
   const repeatBtn = document.getElementById("repeatBtn");
-  const volumeBar = document.getElementById("volumeBar");
   const playlistEl = document.getElementById("playlist");
   const playlistCount = document.getElementById("playlistCount");
 
@@ -81,12 +80,12 @@
 
   function play() {
     audio.play();
-    playBtn.textContent = "⏸";
+    playBtn.classList.add("is-playing");
   }
 
   function pause() {
     audio.pause();
-    playBtn.textContent = "▶";
+    playBtn.classList.remove("is-playing");
   }
 
   function togglePlay() {
@@ -175,11 +174,6 @@
     isSeeking = false;
   });
 
-  volumeBar.addEventListener("input", () => {
-    audio.volume = volumeBar.value / 100;
-  });
-
-  // 初期化
-  audio.volume = volumeBar.value / 100;
+  // 初期化(音量は端末側の設定に委ねる)
   renderPlaylist();
 })();
