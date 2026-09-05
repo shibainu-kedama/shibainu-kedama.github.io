@@ -12,14 +12,12 @@
   --safari-toolbar-buffer: 0px;
 }
 
-/* iOS Safari の下部ツールバー(常時表示のコンパクトなURL/タブバー)は
-   svh/dvh の計算だけでは避けきれず、固定表示のプレイヤーに重なることがある。
-   Safari(WebKit)のタッチデバイスに限定して、確実に上に逃がすための余白を足す。 */
-@supports (-webkit-touch-callout: none) {
-  @media (pointer: coarse) {
-    :root {
-      --safari-toolbar-buffer: 56px;
-    }
+/* スマホのブラウザ(指で操作する画面)は、下部にブラウザ自身のツールバー/URLバーが
+   常時表示されることがあり、svh/dvh の計算だけでは避けきれず固定表示のプレイヤーに
+   重なることがある。タッチ操作の画面幅が狭い端末に限定して、上に逃がす余白を足す。 */
+@media (pointer: coarse) and (max-width: 600px) {
+  :root {
+    --safari-toolbar-buffer: 64px;
   }
 }
 
