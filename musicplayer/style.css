@@ -6,7 +6,7 @@
   --text: #f0f1f5;
   --text-dim: #9297ab;
   --border: #2c3040;
-  --player-h: 200px;
+  --player-h: 20dvh;
 }
 
 * {
@@ -129,13 +129,16 @@ body {
   bottom: 0;
   margin: 0 auto;
   max-width: 600px;
+  height: var(--player-h);
   background: var(--panel);
   border-top: 1px solid var(--border);
   border-radius: 16px 16px 0 0;
-  padding: 14px 18px calc(env(safe-area-inset-bottom, 0px) + 14px);
+  padding: 8px 18px calc(env(safe-area-inset-bottom, 0px) + 8px);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 4px;
+  overflow: hidden;
   box-shadow: 0 -1px 0 rgba(108, 140, 255, 0.35), 0 -4px 24px rgba(108, 140, 255, 0.12), 0 -4px 20px rgba(0, 0, 0, 0.35);
 }
 
@@ -144,7 +147,7 @@ body {
 }
 
 .track-title {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
@@ -153,8 +156,7 @@ body {
 
 .track-index {
   color: var(--text-dim);
-  font-size: 0.8rem;
-  margin-top: 2px;
+  font-size: 0.75rem;
 }
 
 .progress-row {
@@ -212,18 +214,19 @@ input[type="range"]::-moz-range-thumb {
   border: none;
   color: var(--text);
   cursor: pointer;
-  width: 52px;
-  height: 52px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background 0.15s ease;
+  flex-shrink: 0;
 }
 
 .ctrl-btn .icon {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
 }
 
 .ctrl-btn:active {
@@ -232,13 +235,13 @@ input[type="range"]::-moz-range-thumb {
 
 .play-btn {
   background: var(--accent);
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
 }
 
 .play-btn .icon {
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
 }
 
 .play-btn .icon-pause {
