@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Music Player</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>🎵 Music Player</h1>
+    </header>
+
+    <section class="playlist-section">
+      <div class="playlist-header">
+        <h2>プレイリスト</h2>
+        <span class="playlist-count" id="playlistCount"></span>
+      </div>
+      <ul class="playlist" id="playlist"></ul>
+    </section>
+
+    <section class="now-playing">
+      <div class="progress-row">
+        <span class="time" id="currentTime">0:00</span>
+        <input type="range" id="seekBar" class="seek-bar" value="0" min="0" max="100" step="0.1">
+        <span class="time" id="duration">0:00</span>
+      </div>
+
+      <div class="track-info">
+        <div class="track-title" id="trackTitle">曲を選択してください</div>
+        <div class="track-index" id="trackIndex">-</div>
+      </div>
+
+      <div class="controls">
+        <button id="shuffleBtn" class="ctrl-btn toggle-btn" title="シャッフル">🔀</button>
+        <button id="prevBtn" class="ctrl-btn" title="前の曲">⏮</button>
+        <button id="playBtn" class="ctrl-btn play-btn" title="再生/一時停止">▶</button>
+        <button id="nextBtn" class="ctrl-btn" title="次の曲">⏭</button>
+        <button id="repeatBtn" class="ctrl-btn toggle-btn" title="リピート">🔁</button>
+      </div>
+
+      <div class="volume-row">
+        <span>🔊</span>
+        <input type="range" id="volumeBar" class="volume-bar" value="80" min="0" max="100" step="1">
+      </div>
+    </section>
+  </div>
+
+  <audio id="audio" preload="metadata"></audio>
+
+  <script src="tracks.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

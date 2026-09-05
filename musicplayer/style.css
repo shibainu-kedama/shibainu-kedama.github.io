@@ -1,0 +1,253 @@
+:root {
+  --bg: #12141c;
+  --panel: #1b1e2b;
+  --panel-alt: #232738;
+  --accent: #6c8cff;
+  --text: #f0f1f5;
+  --text-dim: #9297ab;
+  --border: #2c3040;
+  --player-h: 200px;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  overscroll-behavior-y: contain;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  max-width: 600px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.app-header {
+  flex: 0 0 auto;
+  padding: calc(env(safe-area-inset-top, 0px) + 12px) 16px 8px;
+  text-align: center;
+}
+
+.app-header h1 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+/* --- プレイリスト(スクロール領域) --- */
+
+.playlist-section {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: var(--player-h);
+}
+
+.playlist-header {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 6px 20px 10px;
+}
+
+.playlist-header h2 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.playlist-count {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.playlist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.playlist-item {
+  padding: 16px 20px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: var(--text-dim);
+  font-size: 1rem;
+  border-left: 3px solid transparent;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.playlist-item:active {
+  background: var(--panel-alt);
+}
+
+.playlist-item.active {
+  color: var(--accent);
+  border-left-color: var(--accent);
+  background: var(--panel-alt);
+  font-weight: 600;
+}
+
+/* --- 下部固定プレイヤー --- */
+
+.now-playing {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0 auto;
+  max-width: 600px;
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+  border-radius: 16px 16px 0 0;
+  padding: 14px 18px calc(env(safe-area-inset-bottom, 0px) + 14px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.track-info {
+  text-align: center;
+}
+
+.track-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-index {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  margin-top: 2px;
+}
+
+.progress-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.time {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  min-width: 34px;
+  text-align: center;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--panel-alt);
+  outline: none;
+  flex: 1;
+  touch-action: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.ctrl-btn {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.4rem;
+  cursor: pointer;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+
+.ctrl-btn:active {
+  background: var(--panel-alt);
+}
+
+.play-btn {
+  background: var(--accent);
+  font-size: 1.5rem;
+  width: 60px;
+  height: 60px;
+}
+
+.play-btn:active {
+  filter: brightness(1.15);
+}
+
+.toggle-btn {
+  font-size: 1.15rem;
+  color: var(--text-dim);
+}
+
+.toggle-btn.active {
+  color: var(--accent);
+  background: var(--panel-alt);
+}
+
+.volume-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 2px;
+}
+
+.volume-bar {
+  flex: 1;
+}
+
+/* 画面が広い場合(PC等)は player の高さ想定を少し縮める */
+@media (min-width: 601px) {
+  .app {
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+}
