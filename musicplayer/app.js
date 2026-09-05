@@ -1,4 +1,18 @@
 (function () {
+  // iOS Safari は下部ツールバー(URLバー)の表示/非表示で見える高さが変わり、
+  // CSSの dvh だけでは追従が遅れて下部ナビゲーションと重なることがあるため、
+  // visualViewport の実測値を --app-height に反映してレイアウトを追従させる。
+  function syncAppHeight() {
+    const h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+    document.documentElement.style.setProperty("--app-height", h + "px");
+  }
+  syncAppHeight();
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", syncAppHeight);
+    window.visualViewport.addEventListener("scroll", syncAppHeight);
+  }
+  window.addEventListener("orientationchange", syncAppHeight);
+
   const audio = document.getElementById("audio");
   const trackTitle = document.getElementById("trackTitle");
   const trackIndex = document.getElementById("trackIndex");

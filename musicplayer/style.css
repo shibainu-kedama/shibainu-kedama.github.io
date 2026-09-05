@@ -6,7 +6,8 @@
   --text: #f0f1f5;
   --text-dim: #9297ab;
   --border: #2c3040;
-  --player-h: 20dvh;
+  --app-height: 100dvh;
+  --player-h: calc(var(--app-height) * 0.2);
   --mascot-h: 36px;
 }
 
@@ -33,7 +34,7 @@ body {
 .app {
   display: flex;
   flex-direction: column;
-  height: 100dvh;
+  height: var(--app-height);
   max-width: 600px;
   margin: 0 auto;
   overflow: hidden;
