@@ -9,17 +9,7 @@
   --app-height: 100svh;
   --player-h: calc(var(--app-height) * 0.2);
   --mascot-h: 36px;
-  --safari-toolbar-buffer: 0px;
   --now-playing-h: var(--player-h); /* JSがプレイヤーの実測高さで上書きする(はみ出た分に追従) */
-}
-
-/* スマホのブラウザ(指で操作する画面)は、下部にブラウザ自身のツールバー/URLバーが
-   常時表示されることがあり、svh/dvh の計算だけでは避けきれず固定表示のプレイヤーに
-   重なることがある。タッチ操作の画面幅が狭い端末に限定して、上に逃がす余白を足す。 */
-@media (pointer: coarse) and (max-width: 600px) {
-  :root {
-    --safari-toolbar-buffer: 64px;
-  }
 }
 
 * {
@@ -86,7 +76,7 @@ body {
   min-height: 0;
   display: flex;
   flex-direction: column;
-  padding-bottom: calc(var(--now-playing-h) + var(--mascot-h) + var(--safari-toolbar-buffer));
+  padding-bottom: calc(var(--now-playing-h) + var(--mascot-h));
 }
 
 /* --- 再生中に転がるマスコット --- */
@@ -95,7 +85,7 @@ body {
   position: fixed;
   left: 0;
   right: 0;
-  bottom: calc(var(--now-playing-h) + var(--safari-toolbar-buffer));
+  bottom: var(--now-playing-h);
   margin: 0 auto;
   max-width: 600px;
   height: var(--mascot-h);
@@ -188,7 +178,7 @@ body {
   position: fixed;
   left: 0;
   right: 0;
-  bottom: var(--safari-toolbar-buffer);
+  bottom: 0;
   margin: 0 auto;
   max-width: 600px;
   min-height: var(--player-h);
