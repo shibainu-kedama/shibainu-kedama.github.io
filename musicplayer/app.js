@@ -12,6 +12,18 @@
     window.addEventListener("resize", syncNowPlayingHeight);
   }
 
+  // マスコットの移動距離(transform だけで動かすため、レーンの実幅が要る)
+  const mascotLaneEl = document.querySelector(".mascot-lane");
+  function syncMascotLaneWidth() {
+    document.documentElement.style.setProperty("--mascot-lane-w", mascotLaneEl.offsetWidth + "px");
+  }
+  syncMascotLaneWidth();
+  if (window.ResizeObserver) {
+    new ResizeObserver(syncMascotLaneWidth).observe(mascotLaneEl);
+  } else {
+    window.addEventListener("resize", syncMascotLaneWidth);
+  }
+
   const audio = document.getElementById("audio");
   const trackTitle = document.getElementById("trackTitle");
   const trackIndex = document.getElementById("trackIndex");

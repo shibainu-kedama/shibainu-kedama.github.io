@@ -199,20 +199,21 @@ body {
   border-radius: 50%;
   animation: mascot-roll 4.5s linear infinite;
   animation-play-state: paused;
+  will-change: transform;
 }
 
 .mascot.spinning {
   animation-play-state: running;
 }
 
+/* left の代わりに transform だけで動かす(left は毎フレーム再レイアウトが
+   発生し、実機で再生中にタップが詰まる原因になっていたため)。 */
 @keyframes mascot-roll {
   0% {
-    left: -28px;
-    transform: rotate(0deg);
+    transform: translateX(0) rotate(0deg);
   }
   100% {
-    left: 100%;
-    transform: rotate(1080deg);
+    transform: translateX(calc(var(--mascot-lane-w, 320px) + 56px)) rotate(1080deg);
   }
 }
 
