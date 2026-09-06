@@ -26,4 +26,6 @@ const TRACKS = [
   { title: "Track X", file: "assets/sound/X.mp3" },
   { title: "Track Y", file: "assets/sound/Y.mp3" },
   { title: "Track Z", file: "assets/sound/Z.mp3" },
+  { title: "The ABC Song", file: "assets/sound/The ABC Song.mp3" },
+  { title: "ぜんぶ見る", file: "assets/sound/ぜんぶ見る.mp3" },
 ];
