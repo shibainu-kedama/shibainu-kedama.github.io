@@ -77,6 +77,101 @@ body {
   display: flex;
   flex-direction: column;
   padding-bottom: calc(var(--now-playing-h) + var(--mascot-h));
+  overflow: hidden;
+}
+
+/* フォルダ一覧 ⇔ 曲一覧 の横スライド */
+
+.screens {
+  display: flex;
+  width: 200%;
+  height: 100%;
+  transition: transform 0.28s ease;
+}
+
+.screens.open {
+  transform: translateX(-50%);
+}
+
+.screen {
+  width: 50%;
+  flex: 0 0 50%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  margin: -4px 4px -4px -8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.back-btn:active {
+  background: var(--panel-alt);
+}
+
+.back-btn .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.folder-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.folder-item {
+  padding: 16px 20px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s ease;
+}
+
+.folder-item:active {
+  background: var(--panel-alt);
+}
+
+.folder-item .icon {
+  width: 22px;
+  height: 22px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.folder-item .folder-title {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.folder-item .folder-count {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.folder-item .chevron {
+  width: 18px;
+  height: 18px;
+  color: var(--text-dim);
+  flex-shrink: 0;
 }
 
 /* --- 再生中に転がるマスコット --- */
@@ -124,9 +219,17 @@ body {
 .playlist-header {
   flex: 0 0 auto;
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
+  gap: 4px;
   padding: 6px 20px 10px;
+}
+
+.playlist-header h2 {
+  flex: 1;
+}
+
+.playlist-header .playlist-count {
+  flex: 0 0 auto;
 }
 
 .playlist-header h2 {

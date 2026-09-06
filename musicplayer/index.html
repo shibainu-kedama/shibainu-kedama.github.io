@@ -33,11 +33,25 @@
     </header>
 
     <section class="playlist-section">
-      <div class="playlist-header">
-        <h2>プレイリスト</h2>
-        <span class="playlist-count" id="playlistCount"></span>
+      <div class="screens" id="screens">
+        <div class="screen">
+          <div class="playlist-header">
+            <h2>プレイリスト</h2>
+          </div>
+          <ul class="folder-list" id="folderList"></ul>
+        </div>
+
+        <div class="screen">
+          <div class="playlist-header">
+            <button id="backBtn" class="back-btn" title="フォルダ一覧に戻る" aria-label="戻る">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+            </button>
+            <h2 id="folderTitle">-</h2>
+            <span class="playlist-count" id="playlistCount"></span>
+          </div>
+          <ul class="playlist" id="playlist"></ul>
+        </div>
       </div>
-      <ul class="playlist" id="playlist"></ul>
     </section>
 
     <div class="mascot-lane" aria-hidden="true">

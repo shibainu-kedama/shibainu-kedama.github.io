@@ -26,8 +26,13 @@
   const playlistEl = document.getElementById("playlist");
   const playlistCount = document.getElementById("playlistCount");
   const mascotImg = document.getElementById("mascotImg");
+  const screensEl = document.getElementById("screens");
+  const folderListEl = document.getElementById("folderList");
+  const folderTitleEl = document.getElementById("folderTitle");
+  const backBtn = document.getElementById("backBtn");
 
-  let order = TRACKS.map((_, i) => i); // 再生順(シャッフル時はここを並べ替える)
+  let currentTracks = []; // 現在開いているフォルダの曲一覧
+  let order = []; // 再生順(シャッフル時はここを並べ替える、currentTracks のインデックス)
   let position = -1; // order 内での現在位置
   let isShuffle = false;
   let isRepeat = false; // 1曲リピート
@@ -49,9 +54,40 @@
     return a;
   }
 
+  function renderFolders() {
+    folderListEl.innerHTML = "";
+    PLAYLISTS.forEach((playlist, idx) => {
+      const li = document.createElement("li");
+      li.className = "folder-item";
+      li.innerHTML = `
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6a2 2 0 0 1 2-2h4.4l2 2H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6z"/></svg>
+        <span class="folder-title">${playlist.title}</span>
+        <span class="folder-count">${playlist.tracks.length}曲</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+      `;
+      li.addEventListener("click", () => openFolder(idx));
+      folderListEl.appendChild(li);
+    });
+  }
+
+  function openFolder(folderIdx) {
+    const playlist = PLAYLISTS[folderIdx];
+    currentTracks = playlist.tracks;
+    folderTitleEl.textContent = playlist.title;
+    order = currentTracks.map((_, i) => i);
+    if (isShuffle) order = shuffleArray(order);
+    position = -1;
+    renderPlaylist();
+    screensEl.classList.add("open");
+  }
+
+  function closeFolder() {
+    screensEl.classList.remove("open");
+  }
+
   function renderPlaylist() {
     playlistEl.innerHTML = "";
-    TRACKS.forEach((track, idx) => {
+    currentTracks.forEach((track, idx) => {
       const li = document.createElement("li");
       li.className = "playlist-item";
       li.dataset.index = idx;
@@ -59,7 +95,7 @@
       li.addEventListener("click", () => playByTrackIndex(idx));
       playlistEl.appendChild(li);
     });
-    playlistCount.textContent = `${TRACKS.length}曲`;
+    playlistCount.textContent = `${currentTracks.length}曲`;
     updateActiveItem();
   }
 
@@ -85,7 +121,7 @@
 
   function loadCurrent() {
     const trackIdx = order[position];
-    const track = TRACKS[trackIdx];
+    const track = currentTracks[trackIdx];
     audio.src = track.file;
     trackTitle.textContent = track.title;
     trackIndex.textContent = `${position + 1} / ${order.length}`;
@@ -104,6 +140,7 @@
 
   function togglePlay() {
     if (position === -1) {
+      if (currentTracks.length === 0) return; // まだフォルダを開いていない
       position = 0;
       loadCurrent();
       play();
@@ -135,7 +172,7 @@
     const currentTrackIdx = position >= 0 ? order[position] : -1;
     isShuffle = !isShuffle;
     shuffleBtn.classList.toggle("active", isShuffle);
-    order = isShuffle ? shuffleArray(TRACKS.map((_, i) => i)) : TRACKS.map((_, i) => i);
+    order = isShuffle ? shuffleArray(currentTracks.map((_, i) => i)) : currentTracks.map((_, i) => i);
     if (currentTrackIdx !== -1) {
       position = order.indexOf(currentTrackIdx);
     }
@@ -152,6 +189,7 @@
   prevBtn.addEventListener("click", playPrev);
   shuffleBtn.addEventListener("click", toggleShuffle);
   repeatBtn.addEventListener("click", toggleRepeat);
+  backBtn.addEventListener("click", closeFolder);
 
   audio.addEventListener("timeupdate", () => {
     if (isSeeking) return;
@@ -192,5 +230,5 @@
   });
 
   // 初期化(音量は端末側の設定に委ねる)
-  renderPlaylist();
+  renderFolders();
 })();
